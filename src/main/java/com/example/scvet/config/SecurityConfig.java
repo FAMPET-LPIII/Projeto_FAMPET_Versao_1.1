@@ -29,26 +29,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/api/v1/alunos/**")
-//                .hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/api/v1/cursos/**")
-//                .hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/api/v1/disciplinas/**")
-//                .hasRole("ADMIN")
-//                .antMatchers("/api/v1/professores/**")
-//                .hasRole("ADMIN")
-//                .antMatchers("/api/v1/turmas/**")
-//                .hasRole("ADMIN")
-//                .antMatchers(HttpMethod.POST, "/api/v1/usuarios/**")
-//                .permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .httpBasic();
-//        ;
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/api/v1/agendamentos/**")
+                .hasAnyRole("USER")
+                .antMatchers("/api/v1/agendamentos/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/api/v1/animais/**")
+                .hasAnyRole("USER")
+                .antMatchers("/api/v1/animais/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/api/v1/consultas/**")
+                .hasAnyRole("USER")
+                .antMatchers("/api/v1/consultas/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers("/api/v1/especialidades/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers("/api/v1/funcoes/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers("/api/v1/funcionarios/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers("/api/v1/especies/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers("/api/v1/clientes/**")
+                .hasAnyRole("ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/api/v1/usuarios/**")
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
+        ;
+    }
 }
