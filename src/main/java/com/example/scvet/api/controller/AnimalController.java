@@ -28,7 +28,6 @@ public class AnimalController {
     private final AnimalService service;
     private final EspecieService especieService;
     private final ClienteService clienteService;
-    private final ConsultaService consultaService;
 
     @GetMapping()
     public ResponseEntity get(){

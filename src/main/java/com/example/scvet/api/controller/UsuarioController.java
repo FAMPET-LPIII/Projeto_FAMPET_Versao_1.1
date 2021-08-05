@@ -1,7 +1,7 @@
-package com.example.scaapi.api.controller;
+package com.example.scvet.api.controller;
 
-import com.example.scaapi.model.entity.Usuario;
-import com.example.scaapi.service.UsuarioService;
+import com.example.scvet.model.entity.Usuario;
+import com.example.scvet.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;

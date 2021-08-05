@@ -1,6 +1,6 @@
-package com.example.scaapi.model.repository;
+package com.example.scvet.model.repository;
 
-import com.example.scaapi.model.entity.Usuario;
+import com.example.scvet.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

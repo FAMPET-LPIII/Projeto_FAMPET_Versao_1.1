@@ -1,7 +1,8 @@
-package com.example.scaapi.service;
+package com.example.scvet.service;
 
-import com.example.scaapi.model.entity.Usuario;
-import com.example.scaapi.model.repository.UsuarioRepository;
+
+import com.example.scvet.model.entity.Usuario;
+import com.example.scvet.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

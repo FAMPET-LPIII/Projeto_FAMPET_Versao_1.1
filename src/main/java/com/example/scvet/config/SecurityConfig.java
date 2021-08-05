@@ -1,6 +1,7 @@
-package com.example.scaapi.config;
+package com.example.scvet.config;
 
-import com.example.scaapi.service.UsuarioService;
+
+import com.example.scvet.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
