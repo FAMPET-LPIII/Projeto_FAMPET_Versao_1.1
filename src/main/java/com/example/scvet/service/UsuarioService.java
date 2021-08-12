@@ -1,6 +1,6 @@
 package com.example.scvet.service;
 
-
+import com.example.scvet.exception.SenhaInvalidaException;
 import com.example.scvet.model.entity.Usuario;
 import com.example.scvet.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,16 @@ public class UsuarioService implements UserDetailsService {
     @Transactional
     public Usuario salvar(Usuario usuario){
         return repository.save(usuario);
+    }
+
+    public UserDetails autenticar(Usuario usuario){
+        UserDetails user = loadUserByUsername(usuario.getLogin());
+        boolean senhasBatem = encoder.matches(usuario.getSenha(), user.getPassword());
+
+        if (senhasBatem){
+            return user;
+        }
+        throw new SenhaInvalidaException();
     }
 
     @Override

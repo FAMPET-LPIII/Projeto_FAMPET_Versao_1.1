@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f35bc21-9ec5-44e0-b1d5-9a0eced9679d" name="Default Changelist" comment="" />
+    <list default="true" id="8f35bc21-9ec5-44e0-b1d5-9a0eced9679d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/api/dto/CredenciaisDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/api/dto/TokenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/exception/SenhaInvalidaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/security/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scvet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scvet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scvet/api/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/api/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scvet/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scvet/model/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/model/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scvet/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scvet/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,15 +70,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,6 +133,7 @@
       <workItem from="1627382827288" duration="10000" />
       <workItem from="1628182354129" duration="63000" />
       <workItem from="1628182429786" duration="2851000" />
+      <workItem from="1628787578696" duration="2672000" />
     </task>
     <servers />
   </component>
