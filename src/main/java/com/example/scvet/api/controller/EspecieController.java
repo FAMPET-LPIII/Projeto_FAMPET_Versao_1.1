@@ -4,6 +4,7 @@ import com.example.scvet.api.dto.EspecieDTO;
 import com.example.scvet.exception.RegraNegocioException;
 import com.example.scvet.model.entity.Especie;
 import com.example.scvet.service.EspecieService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,13 @@ import java.util.stream.Collectors;
 
 public class EspecieController {
     private final EspecieService service;
-
+    @ApiOperation("Obter especies cadastradas")
     @GetMapping()
     public ResponseEntity get(){
         List<Especie> especies = service.getEspecies();
         return ResponseEntity.ok(especies.stream().map(EspecieDTO::create).collect(Collectors.toList()));
     }
-
+    @ApiOperation("Obter detalhes de uma especie")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Especie> especie = service.getEspecieById(id);
@@ -36,6 +37,7 @@ public class EspecieController {
 
         return ResponseEntity.ok(especie.map(EspecieDTO::create));
     }
+    @ApiOperation("Cadastrar uma especie")
     @PostMapping()
     public ResponseEntity post(EspecieDTO dto){
         try {
@@ -47,7 +49,7 @@ public class EspecieController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @ApiOperation("Obter detalhes de uma especie")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, EspecieDTO dto) {
         if (!service.getEspecieById(id).isPresent()) {
@@ -62,6 +64,7 @@ public class EspecieController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @ApiOperation("Apagar uma especie")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Especie> especie = service.getEspecieById(id);

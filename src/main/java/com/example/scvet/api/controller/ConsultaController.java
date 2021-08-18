@@ -6,6 +6,7 @@ import com.example.scvet.model.entity.*;
 import com.example.scvet.service.AnimalService;
 import com.example.scvet.service.ConsultaService;
 import com.example.scvet.service.FuncionarioService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,13 @@ public class ConsultaController {
     private final FuncionarioService funcionarioService;
     private final AnimalService animalService;
 
+    @ApiOperation("Obter consultas cadastradas")
     @GetMapping()
     public ResponseEntity get(){
         List<Consulta> consultas = service.getConsultas();
         return ResponseEntity.ok(consultas.stream().map(ConsultaDTO::create).collect(Collectors.toList()));
     }
-
+    @ApiOperation("Obter detalhes de uma consulta")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Consulta> consulta = service.getConsultaById(id);
@@ -40,7 +42,7 @@ public class ConsultaController {
 
         return ResponseEntity.ok(consulta.map(ConsultaDTO::create));
     }
-
+    @ApiOperation("Cadastrar uma consulta")
     @PostMapping()
     public ResponseEntity post(ConsultaDTO dto){
         try {
@@ -54,6 +56,7 @@ public class ConsultaController {
         }
     }
 
+    @ApiOperation("Atualizar uma consulta")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, ConsultaDTO dto) {
         if (!service.getConsultaById(id).isPresent()) {
@@ -68,7 +71,7 @@ public class ConsultaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @ApiOperation("Apagar uma consulta")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Consulta> consulta = service.getConsultaById(id);

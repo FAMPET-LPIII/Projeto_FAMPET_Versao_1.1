@@ -30,6 +30,7 @@ public class AnimalController {
     private final EspecieService especieService;
     private final ClienteService clienteService;
 
+    @ApiOperation("Obter animais cadastrados")
     @GetMapping()
     public ResponseEntity get(){
         List<Animal> animais = service.getAnimais();
@@ -50,7 +51,7 @@ public class AnimalController {
 
         return ResponseEntity.ok(animal.map(AnimalDTO::create));
     }
-
+    @ApiOperation("Obter consultas de um animal")
     @GetMapping("/{id}/consultas")
     public ResponseEntity getListConsultas(@PathVariable("id") Long id){
         Optional<Animal> animal = service.getAnimalById(id);
@@ -61,7 +62,7 @@ public class AnimalController {
     }
 
     @PostMapping()
-    @ApiOperation("Salva um novo animal")
+    @ApiOperation("Salvar um novo animal")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Animal salvo com sucesso"),
             @ApiResponse(code = 400, message = "Erro ao salvar o animal")
@@ -77,7 +78,7 @@ public class AnimalController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @ApiOperation("Atualizar um animal")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, AnimalDTO dto) {
         if (!service.getAnimalById(id).isPresent()) {
@@ -92,6 +93,7 @@ public class AnimalController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @ApiOperation("Apagar um animal")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Animal> animal = service.getAnimalById(id);
