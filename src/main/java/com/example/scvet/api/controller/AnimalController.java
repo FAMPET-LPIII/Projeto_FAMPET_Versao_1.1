@@ -8,7 +8,7 @@ import com.example.scvet.model.entity.Cliente;
 import com.example.scvet.model.entity.Especie;
 import com.example.scvet.service.AnimalService;
 import com.example.scvet.service.ClienteService;
-import com.example.scvet.service.ConsultaService;
+import io.swagger.annotations.*;
 import com.example.scvet.service.EspecieService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/animais")
 @RequiredArgsConstructor
+@Api("API de Animais")
 
 public class AnimalController {
     private final AnimalService service;
@@ -36,7 +37,12 @@ public class AnimalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity get(@PathVariable("id") Long id){
+    @ApiOperation("Obter detalhes de um animal")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Animal encontrado"),
+            @ApiResponse(code = 404, message = "Animal não encontrado")
+    })
+    public ResponseEntity get(@PathVariable("id") @ApiParam("Id do animal") Long id){
         Optional<Animal> animal = service.getAnimalById(id);
         if(!animal.isPresent()){
             return new ResponseEntity("Animal não encontrado", HttpStatus.NOT_FOUND);
@@ -55,6 +61,11 @@ public class AnimalController {
     }
 
     @PostMapping()
+    @ApiOperation("Salva um novo animal")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Animal salvo com sucesso"),
+            @ApiResponse(code = 400, message = "Erro ao salvar o animal")
+    })
     public ResponseEntity post(AnimalDTO dto){
         try {
             Animal animal = converter(dto);
