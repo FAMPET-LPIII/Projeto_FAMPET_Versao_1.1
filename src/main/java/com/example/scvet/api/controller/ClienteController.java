@@ -5,6 +5,7 @@ import com.example.scvet.exception.RegraNegocioException;
 import com.example.scvet.model.entity.Agendamento;
 import com.example.scvet.model.entity.Animal;
 import com.example.scvet.model.entity.Cliente;
+import io.swagger.annotations.ApiOperation;
 import com.example.scvet.model.entity.Funcionario;
 import com.example.scvet.service.AgendamentoService;
 import com.example.scvet.service.ClienteService;
@@ -27,12 +28,14 @@ public class ClienteController {
     private final ClienteService service;
     private final AgendamentoService serviceAgendamento;
 
+    @ApiOperation("Obter clientes cadastrados.")
     @GetMapping()
     public ResponseEntity get() {
         List<Cliente> clientes = service.getClientes();
         return ResponseEntity.ok(clientes.stream().map(ClienteDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Obter cliente cadastrado.")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Cliente> cliente = service.getClienteById(id);
@@ -43,7 +46,7 @@ public class ClienteController {
         }
         return ResponseEntity.ok(cliente.map(ClienteDTO::create));
     }
-
+    @ApiOperation("Obter animais de um cliente")
     @GetMapping("/{id}/animais")
     public ResponseEntity getAnimais(@PathVariable long id) {
         Optional<Cliente> cliente = service.getClienteById(id);
@@ -52,7 +55,7 @@ public class ClienteController {
         }
         return ResponseEntity.ok(cliente.get().getAnimais().stream().map(AnimalDTO::create).collect(Collectors.toList()));
     }
-
+    @ApiOperation("Obter agendamentos de um cliente")
     @GetMapping("/{id}/agendamentos")
     public ResponseEntity getAgendamentos(@PathVariable long id) {
         Optional<Cliente> cliente = service.getClienteById(id);
@@ -62,6 +65,7 @@ public class ClienteController {
         return ResponseEntity.ok(cliente.get().getAgendamentos().stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Salva um cliente.")
     @PostMapping()
     public ResponseEntity post(ClienteDTO dto) {
         try {
@@ -73,6 +77,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation("Atualiza um cliente.")
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, ClienteDTO dto){
         if(!service.getClienteById(id).isPresent()){
@@ -87,6 +92,7 @@ public class ClienteController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @ApiOperation("Apaga um cliente.")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Cliente> cliente = service.getClienteById(id);

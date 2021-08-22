@@ -6,6 +6,7 @@ import com.example.scvet.exception.RegraNegocioException;
 import com.example.scvet.model.entity.*;
 import com.example.scvet.service.*;
 import lombok.RequiredArgsConstructor;
+import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +27,14 @@ public class FuncionarioController {
     private final FuncaoService funcaoService;
     private final AgendamentoService serviceAgendamento;
 
-
+    @ApiOperation("Obter funcionários cadastrados.")
     @GetMapping()
     public ResponseEntity get(){
         List<Funcionario> funcionario = service.getFuncionarios();
         return ResponseEntity.ok(funcionario.stream().map(FuncionarioDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Obter funcionário cadastrado.")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
@@ -44,6 +46,7 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionario.map(FuncionarioDTO::create));
     }
 
+    @ApiOperation("Obter agendamentos de um funcionário.")
     @GetMapping("/{id}/agendamentos")
     public ResponseEntity getAgendamentos(@PathVariable long id) {
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
@@ -53,6 +56,7 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionario.get().getAgendamentos().stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Salva um funcionário.")
     @PostMapping()
     public ResponseEntity post(FuncionarioDTO dto){
         try {
@@ -64,6 +68,7 @@ public class FuncionarioController {
         }
     }
 
+    @ApiOperation("Atualiza um funcionário.")
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, FuncionarioDTO dto){
         if(!service.getFuncionarioById(id).isPresent()){
@@ -79,6 +84,7 @@ public class FuncionarioController {
         }
     }
 
+    @ApiOperation("Apaga um funcionário.")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
