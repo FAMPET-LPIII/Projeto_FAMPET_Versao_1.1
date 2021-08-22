@@ -1,11 +1,10 @@
 package com.example.scvet.api.controller;
 
 import com.example.scvet.api.dto.EspecialidadeDTO;
-import com.example.scvet.api.dto.FuncaoDTO;
 import com.example.scvet.exception.RegraNegocioException;
 import com.example.scvet.model.entity.Especialidade;
-import com.example.scvet.model.entity.Funcao;
 import com.example.scvet.service.EspecialidadeService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -23,12 +22,14 @@ import java.util.stream.Collectors;
 public class EspecialidadeController {
     private final EspecialidadeService service;
 
+    @ApiOperation("Obter especialidades cadastradas.")
     @GetMapping()
     public ResponseEntity get(){
         List<Especialidade> especialidades = service.getEspecialidades();
         return ResponseEntity.ok(especialidades.stream().map(EspecialidadeDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Obter uma especialidade cadastrada.")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Especialidade> especialidade = service.getEspecialidadeById(id);
@@ -38,6 +39,7 @@ public class EspecialidadeController {
         return ResponseEntity.ok(especialidade.map(EspecialidadeDTO::create));
     }
 
+    @ApiOperation("Salva uma nova especialidade.")
     @PostMapping
     public ResponseEntity post(EspecialidadeDTO dto){
         try {
@@ -55,6 +57,7 @@ public class EspecialidadeController {
         return especialidade;
     }
 
+    @ApiOperation("Atualiza uma especialidade.")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, EspecialidadeDTO dto) {
         if (!service.getEspecialidadeById(id).isPresent()) {
@@ -70,6 +73,7 @@ public class EspecialidadeController {
         }
     }
 
+    @ApiOperation("Apaga uma especialidade.")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Especialidade> especialidade = service.getEspecialidadeById(id);

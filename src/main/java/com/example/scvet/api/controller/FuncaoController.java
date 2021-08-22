@@ -6,6 +6,7 @@ import com.example.scvet.exception.RegraNegocioException;
 import com.example.scvet.model.entity.Especialidade;
 import com.example.scvet.model.entity.Funcao;
 import com.example.scvet.service.FuncaoService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,14 @@ import java.util.stream.Collectors;
 public class FuncaoController {
     private final FuncaoService service;
 
+    @ApiOperation("Obter funcoes cadastradas.")
     @GetMapping()
     public ResponseEntity get(){
         List<Funcao> funcoes = service.getFuncoes();
         return ResponseEntity.ok(funcoes.stream().map(FuncaoDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Obter uma funcao cadastrada.")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Funcao> funcao = service.getFuncaoById(id);
@@ -38,6 +41,7 @@ public class FuncaoController {
         return ResponseEntity.ok(funcao.map(FuncaoDTO::create));
     }
 
+    @ApiOperation("Salva uma funcao.")
     @PostMapping
     public ResponseEntity post(FuncaoDTO dto){
         try {
@@ -55,6 +59,7 @@ public class FuncaoController {
         return funcao;
     }
 
+    @ApiOperation("Atualiza uma funcao.")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, FuncaoDTO dto) {
         if (!service.getFuncaoById(id).isPresent()) {
@@ -70,6 +75,7 @@ public class FuncaoController {
         }
     }
 
+    @ApiOperation("Apaga uma funcao.")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Funcao> funcao = service.getFuncaoById(id);

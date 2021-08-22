@@ -10,6 +10,7 @@ import com.example.scvet.model.entity.Funcionario;
 import com.example.scvet.service.AgendamentoService;
 import com.example.scvet.service.ClienteService;
 import com.example.scvet.service.FuncionarioService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -30,12 +31,14 @@ public class AgendamentoController {
     private final ClienteService clienteService;
     private final FuncionarioService funcionarioService;
 
+    @ApiOperation("Obter agendamentos cadastrados.")
     @GetMapping()
     public ResponseEntity get(){
         List<Agendamento> agendamentos = service.getAgendamentos();
         return ResponseEntity.ok(agendamentos.stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
     }
 
+    @ApiOperation("Obter agendamento cadastrado.")
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Agendamento> agendamento = service.getAgendamentoById(id);
@@ -45,7 +48,7 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamento.map(AgendamentoDTO::create));
     }
 
-
+    @ApiOperation("Salva um agendamento.")
     @PostMapping()
     public ResponseEntity post(AgendamentoDTO dto){
         try {
@@ -80,6 +83,7 @@ public class AgendamentoController {
         return agendamento;
     }
 
+    @ApiOperation("Atualiza um agendamento.")
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Long id, AgendamentoDTO dto) {
         if (!service.getAgendamentoById(id).isPresent()) {
@@ -95,6 +99,7 @@ public class AgendamentoController {
         }
     }
 
+    @ApiOperation("Apaga um agendamento.")
     @DeleteMapping("{id}")
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Agendamento> agendamento = service.getAgendamentoById(id);
