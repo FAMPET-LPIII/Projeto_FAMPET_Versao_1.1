@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f35bc21-9ec5-44e0-b1d5-9a0eced9679d" name="Default Changelist" comment="" />
+    <list default="true" id="8f35bc21-9ec5-44e0-b1d5-9a0eced9679d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scvet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scvet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,6 +127,10 @@
       <workItem from="1628182429786" duration="2851000" />
       <workItem from="1628787578696" duration="2672000" />
       <workItem from="1629628660738" duration="1264000" />
+      <workItem from="1629762404717" duration="28000" />
+      <workItem from="1629851019961" duration="4000" />
+      <workItem from="1629851307153" duration="167000" />
+      <workItem from="1629917424393" duration="98000" />
     </task>
     <servers />
   </component>
